@@ -1,20 +1,27 @@
-import string
-abjad = string.printable
+# Muhammad Yusuf
+# 5220600048
 
-def deskrip (chiper) :
-    global abjad
-    key = int(input('key:'))
-    pesan = ''
+def dekripsi():
+    Alpabeth1 = "abcdefghijklmnopqrstuvwxyz"
+    input_encrypted = str(input("Masukan pesan : " ))
 
-    for i in chiper:
-        if i in abjad:
-            k=abjad.find(i)
-            k=(k-key)%100
-            pesan = pesan+abjad[k]
-        else:
-            pesan = pesan + i
-    return pesan
+    for key in range(len(Alpabeth1)):
+        translated = ""
+        for symbol in input_encrypted:
+            if symbol in Alpabeth1:
+                num = Alpabeth1.find(symbol)
+                num = num - key
+                if num < 0:
+                    num = num + len(Alpabeth1)
+                translated = translated + Alpabeth1[num]
+            else:
+                translated = translated + symbol
 
-if __name__=='__main__':
-    cipher = input ('pesan:')
-    print(deskrip(cipher))
+        print('key pesan %s: %s' % (key, translated))
+
+def main():
+    dekripsi()
+
+
+if __name__ == '__main__':
+    main()
